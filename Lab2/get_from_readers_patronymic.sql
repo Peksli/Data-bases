@@ -1,0 +1,1 @@
+SELECT * FROM Readers WHERE Patronymic='Иванович'
