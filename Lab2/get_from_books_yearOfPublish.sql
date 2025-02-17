@@ -1,1 +1,0 @@
-SELECT * FROM Books WHERE YearOfPublish IN (1866, 1842, 1973)

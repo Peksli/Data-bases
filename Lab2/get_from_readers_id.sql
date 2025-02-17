@@ -1,1 +1,0 @@
-SELECT * FROM Readers WHERE ID=2
