@@ -9,31 +9,31 @@ GO
 CREATE TABLE Publishers
 (
 	PublisherID INT IDENTITY(1, 1) PRIMARY KEY,
-	Publisher NVARCHAR(20)
+	Publisher NVARCHAR(20) NOT NULL
 )
 
 
 CREATE TABLE Readers
 (
 	ID INT IDENTITY(1, 1) PRIMARY KEY,
-	NumberReaderTicket INT,
-	Surname NVARCHAR(20),
-	Name NVARCHAR(20),
+	NumberReaderTicket INT NOT NULL,
+	Surname NVARCHAR(20) NOT NULL,
+	Name NVARCHAR(20) NOT NULL,
 	Patronymic NVARCHAR(20),
-	PhoneNumber NVARCHAR(20),
-	Address NVARCHAR(20)
+	PhoneNumber NVARCHAR(20) NOT NULL UNIQUE,
+	Address NVARCHAR(20) NOT NULL
 )
 
 
 CREATE TABLE Books
 (
 	ID INT IDENTITY(1, 1) PRIMARY KEY,
-	InventoryNumber INT,
-	Author NVARCHAR(20),
-	Title NVARCHAR(20),
-	YearOfPublish INT,
-	CodeOfPublisher INT,
-	TotalCount INT
+	InventoryNumber INT NOT NULL,
+	Author NVARCHAR(20) NOT NULL,
+	Title NVARCHAR(20) NOT NULL,
+	YearOfPublish INT NOT NULL,
+	CodeOfPublisher INT NOT NULL,
+	TotalCount INT NOT NULL,
 
 	FOREIGN KEY (CodeOfPublisher) REFERENCES Publishers(PublisherID) ON DELETE CASCADE
 )
@@ -42,10 +42,10 @@ CREATE TABLE Books
 CREATE TABLE JournalGiveBooks
 (
 	ID INT IDENTITY(1, 1) PRIMARY KEY,
-	ReaderID INT,
-	BookID INT,
-	DataOfGive DATE,
-	DataNeedReturn DATE,
+	ReaderID INT NOT NULL,
+	BookID INT NOT NULL,
+	DataOfGive DATE NOT NULL,
+	DataNeedReturn DATE NOT NULL,
 	DataActualReturn DATE,
 
 	FOREIGN KEY (ReaderID) REFERENCES Readers(ID) ON DELETE CASCADE,
