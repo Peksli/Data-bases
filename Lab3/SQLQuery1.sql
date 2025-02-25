@@ -1,20 +1,20 @@
 USE Library
 
 --1.	Подсчитать количество читателей, имеющих отчество «Иванович».
-SELECT Patronymic, COUNT(*) as Количество
+SELECT Patronymic, COUNT(Patronymic) as Количество
 FROM Readers
 GROUP BY Patronymic
 HAVING Patronymic='Иванович'
 
 
 --2.	Подсчитать количество книг, которое числится за каждым читателем. 
-SELECT ReaderID, COUNT(*) as [Числится книг]
+SELECT ReaderID, COUNT(BookID) as [Числится книг]
 FROM JournalGiveBooks
 GROUP BY ReaderID
 
 
 --3.	Определить код читателя, который взял максимальное число книг. 
-SELECT TOP 1 ReaderID, COUNT(*) as [Числится книг]
+SELECT TOP 1 ReaderID, COUNT(BookID) as [Числится книг]
 FROM JournalGiveBooks
 GROUP BY ReaderID
 ORDER BY [Числится книг] DESC
@@ -50,7 +50,7 @@ WHERE CodeOfPublisher = (
 --7.	Определить дату выдачи максимального количества книг. 
 SELECT DataOfGive, [Числится книг за датой]
 FROM(
-	SELECT TOP 1 ReaderID, DataOfGive, COUNT(*) as [Числится книг за датой]
+	SELECT TOP 1 ReaderID, DataOfGive, COUNT(DataOfGive) as [Числится книг за датой]
 	FROM JournalGiveBooks
 	GROUP BY ReaderID, DataOfGive
 	ORDER BY [Числится книг за датой] DESC
